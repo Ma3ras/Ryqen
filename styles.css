@@ -519,12 +519,12 @@ spline-viewer::part(watermark) {
 }
 
 .portfolio-modal-close-btn:hover {
-    background: rgba(255, 95, 86, 0.8);
+    background: rgba(0, 255, 136, 0.3);
     transform: scale(1.1);
 }
 
 .portfolio-modal-expand-btn:hover {
-    background: rgba(39, 201, 63, 0.8);
+    background: rgba(0, 255, 136, 0.3);
     transform: scale(1.1);
 }
 
