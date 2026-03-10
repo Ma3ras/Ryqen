@@ -350,7 +350,22 @@
         </div>
     </footer>
 
-    <script src="scripts.js"></script>
+    <!-- COOKIE CONSENT BANNER -->
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="cookie-banner-inner">
+            <div class="cookie-banner-text">
+                <p>Wir verwenden Cookies, um Ihre Erfahrung zu verbessern und unsere Website zu analysieren.
+                    Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button class="cookie-btn reject" onclick="rejectCookies()">Ablehnen</button>
+                <button class="cookie-btn accept" onclick="acceptCookies()">Akzeptieren</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="cookie-consent.js"></script>
+    <script src="scripts.js" defer></script>
 </body>
 
 </html>
