@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryqen — Websites die konvertieren</title>
+    <meta name="description"
+        content="Wir bauen Websites, die Kunden bringen. Moderne Webentwicklung für Unternehmen, die online wachsen wollen. Von der Idee bis zum Launch — Ryqen.">
+    <link rel="icon" type="image/png" href="Ryqen_Favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.58/build/spline-viewer.js"></script>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav id="navbar" class="site-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="Ryqen_logo.png" alt="Ryqen" class="nav-logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="leistungen.html" class="nav-link">Leistungen</a>
+                <a href="#portfolio" class="nav-link">Arbeiten</a>
+                <a href="kontakt.html" class="nav-link">Kontakt</a>
+                <a href="kontakt.html" class="cta-neon">Projekt starten</a>
+            </div>
+            <button id="burger" class="burger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <div id="mobileMenu" class="mobile-menu">
+        <button id="closeMenu" class="mobile-close">×</button>
+        <a href="index.html">Home</a>
+        <a href="leistungen.html">Leistungen</a>
+        <a href="#portfolio">Arbeiten</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="kontakt.html" class="cta-neon filled" style="margin-top:1rem;">Projekt starten</a>
+    </div>
+
+    <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+    <!-- Spline 3D Background (Absolute, and scaled to push watermark out of view) -->
+    <div id="spline-bg" style="position:absolute;inset:0;z-index:0;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;width:100%;height:115%;pointer-events:auto;">
+            <spline-viewer url="https://prod.spline.design/kzRaaNwU5NjKF6Wn/scene.splinecode"
+                style="width:100%;height:100%;display:block;" id="spline-viewer-element"></spline-viewer>
+        </div>
+        <!-- Gradient overlays -->
+        <div style="position:absolute;inset:0;background:
+            linear-gradient(to right, rgba(5,5,8,0.85), transparent 35%, transparent 65%, rgba(5,5,8,0.85)),
+            linear-gradient(to bottom, rgba(5,5,8,0.1) 0%, transparent 20%, transparent 50%, rgba(5,5,8,0.95) 100%);
+            pointer-events:none;z-index:1;"></div>
+        <div
+            style="position:absolute;inset:0;background:rgba(0,255,136,0.04);mix-blend-mode:screen;pointer-events:none;z-index:1;">
+        </div>
+    </div>
+
+    <section class="hero-section"
+        style="min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:transparent;pointer-events:none;z-index:1;">
+
+        <div
+            style="max-width:1320px;margin:0 auto;padding:0 2rem;width:100%;position:relative;z-index:2;pointer-events:none;">
+            <div style="max-width:850px;">
+                <div class="reveal label-mono">001 / Webdesign Agentur</div>
+
+                <h1 class="reveal stagger-1 heading-xl"
+                    style="font-size:clamp(3.5rem,8vw,6.5rem);margin-bottom:1.5rem;">
+                    Websites<br>die <span style="color:var(--neon);">konvertieren</span>.
+                </h1>
+
+                <p class="reveal stagger-2"
+                    style="font-size:1.15rem;color:var(--text-secondary);max-width:520px;line-height:1.75;margin-bottom:2.5rem;">
+                    Keine Templates. Kein Baukasten. Handgebaute Websites mit Strategie, Design und Code —
+                    für Unternehmen, die online wirklich wachsen wollen.
+                </p>
+
+                <div class="reveal stagger-3" style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;">
+                    <a href="kontakt.html" class="cta-neon filled large" style="pointer-events:auto;">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            stroke-width="2">
+                            <path d="M5 12h14" />
+                            <path d="M12 5l7 7-7 7" />
+                        </svg>
+                        Projekt starten
+                    </a>
+                    <a href="#portfolio" class="cta-neon large" style="pointer-events:auto;">Arbeiten ansehen</a>
+                </div>
+
+                <!-- Tech stack badges -->
+                <div class="reveal stagger-4" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:3rem;">
+                    <span
+                        style="font-family:var(--font-mono);font-size:0.65rem;padding:0.35rem 0.75rem;border:1px solid var(--border);border-radius:4px;color:var(--text-muted);">HTML/CSS</span>
+                    <span
+                        style="font-family:var(--font-mono);font-size:0.65rem;padding:0.35rem 0.75rem;border:1px solid var(--border);border-radius:4px;color:var(--text-muted);">JavaScript</span>
+                    <span
+                        style="font-family:var(--font-mono);font-size:0.65rem;padding:0.35rem 0.75rem;border:1px solid var(--border);border-radius:4px;color:var(--text-muted);">React</span>
+                    <span
+                        style="font-family:var(--font-mono);font-size:0.65rem;padding:0.35rem 0.75rem;border:1px solid var(--border);border-radius:4px;color:var(--text-muted);">SEO</span>
+                    <span
+                        style="font-family:var(--font-mono);font-size:0.65rem;padding:0.35rem 0.75rem;border:1px solid var(--border);border-radius:4px;color:var(--text-muted);">Responsive</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div
+            style="position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.4rem;opacity:0.25;">
+            <span
+                style="font-family:var(--font-mono);font-size:0.55rem;text-transform:uppercase;letter-spacing:0.3em;color:var(--text-secondary);">Scroll</span>
+            <div style="width:1px;height:28px;background:linear-gradient(to bottom,var(--neon),transparent);"></div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════ MARQUEE ═══════════════════════════ -->
+    <div class="marquee" style="background:var(--bg-deep);position:relative;z-index:2;">
+        <div class="marquee-track" id="marquee-track">
+            <span class="marquee-item">Webdesign</span><span class="marquee-dot"></span><span
+                class="marquee-item">Redesign</span><span class="marquee-dot"></span><span class="marquee-item">Landing
+                Pages</span><span class="marquee-dot"></span><span class="marquee-item">SEO</span><span
+                class="marquee-dot"></span><span class="marquee-item">Branding</span><span class="marquee-dot"></span>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════ STATS ═══════════════════════════ -->
+    <section
+        style="background:var(--bg-void);padding:5rem 0;border-bottom:1px solid var(--border);position:relative;z-index:2;">
+        <div style="max-width:1320px;margin:0 auto;padding:0 2rem;">
+            <div class="stats-grid">
+                <div class="reveal">
+                    <div class="stat-number"><span class="counter accent" data-target="50" data-suffix="+">0+</span>
+                    </div>
+                    <p class="stat-label">Projekte abgeschlossen</p>
+                </div>
+                <div class="reveal stagger-1">
+                    <div class="stat-number"><span class="counter" data-target="100" data-suffix="%">0%</span></div>
+                    <p class="stat-label">Responsive Design</p>
+                </div>
+                <div class="reveal stagger-2">
+                    <div class="stat-number"><span class="counter accent" data-target="48" data-suffix="h">0h</span>
+                    </div>
+                    <p class="stat-label">Max. Antwortzeit</p>
+                </div>
+                <div class="reveal stagger-3">
+                    <div class="stat-number"><span class="counter" data-target="5" data-suffix="★">0★</span></div>
+                    <p class="stat-label">Kundenbewertung</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════ SERVICES ═══════════════════════════ -->
+    <section id="services" style="background:var(--bg-void);padding:6rem 0;position:relative;z-index:2;">
+        <div style="max-width:1320px;margin:0 auto;padding:0 2rem;">
+            <div class="services-header">
+                <div>
+                    <div class="reveal label-mono">002 / Was wir machen</div>
+                    <h2 class="reveal stagger-1 heading-lg" style="font-size:clamp(2.2rem,4.5vw,3.5rem);">
+                        Von der Idee zum fertigen Produkt.
+                    </h2>
+                </div>
+                <p class="reveal stagger-2"
+                    style="color:var(--text-secondary);font-size:0.95rem;line-height:1.75;max-width:450px;justify-self:end;">
+                    Jedes Projekt ist einzigartig. Wir entwickeln individuelle Lösungen — keine Copy-Paste-Templates,
+                    sondern maßgeschneiderte Websites mit Charakter.
+                </p>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;">
+                <div class="reveal tech-card">
+                    <div class="tech-card-number">// 01</div>
+                    <h3>Neue Websites</h3>
+                    <p>Von Null aufgebaut — Design, Code, Content. Ihre komplette digitale Präsenz, handgefertigt und
+                        auf Performance optimiert.</p>
+                </div>
+                <div class="reveal stagger-1 tech-card">
+                    <div class="tech-card-number">// 02</div>
+                    <h3>Website Redesign</h3>
+                    <p>Ihre bestehende Website modernisiert. Neues Design, bessere UX, schnellere Ladezeiten — ohne
+                        bei Null anzufangen.</p>
+                </div>
+                <div class="reveal stagger-2 tech-card">
+                    <div class="tech-card-number">// 03</div>
+                    <h3>Landing Pages</h3>
+                    <p>Conversion-optimierte Einzelseiten für Kampagnen, Launches oder Lead-Generierung. Gebaut um
+                        Ergebnisse zu liefern.</p>
+                </div>
+            </div>
+
+            <div style="text-align:center;margin-top:3rem;">
+                <a href="leistungen.html" class="reveal cta-neon">Alle Leistungen →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════ PORTFOLIO ═══════════════════════════ -->
+    <section id="portfolio"
+        style="background:var(--bg-deep);padding:6rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;z-index:2;">
+        <div class="grid-bg" style="opacity:0.3;"></div>
+        <div style="max-width:1320px;margin:0 auto;padding:0 2rem;position:relative;z-index:2;">
+            <div style="text-align:center;margin-bottom:4rem;">
+                <div class="reveal label-mono" style="justify-content:center;">003 / Portfolio</div>
+                <h2 class="reveal stagger-1 heading-lg" style="font-size:clamp(2.2rem,4.5vw,3.5rem);">
+                    Aktuelle Arbeiten.
+                </h2>
+                <p class="reveal stagger-2"
+                    style="color:var(--text-secondary);max-width:500px;margin:1rem auto 0;line-height:1.7;">
+                    Einblick in ausgewählte Projekte — von Fitness-Studios bis zu Lifestyle-Brands.
+                </p>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- DoItFitness -->
+                <div class="reveal portfolio-card" style="aspect-ratio:16/10;"
+                    onclick="openPortfolioModal('http://localhost:3003')">
+                    <img src="portfolio-doit.png" alt="DoItFitness Website"
+                        style="width:100%;height:100%;object-fit:cover;object-position:top;">
+                    <div class="portfolio-card-overlay">
+                        <div class="portfolio-card-tag">Fitness Studio • Website</div>
+                        <div class="portfolio-card-title">DoItFitness</div>
+                    </div>
+                </div>
+                <!-- Fact Fitness -->
+                <div class="reveal stagger-1 portfolio-card" style="aspect-ratio:16/10;"
+                    onclick="openPortfolioModal('http://localhost:3002')">
+                    <img src="portfolio-fact.png" alt="Fact Fitness Website"
+                        style="width:100%;height:100%;object-fit:cover;object-position:top;">
+                    <div class="portfolio-card-overlay">
+                        <div class="portfolio-card-tag">Fitness Studio • Redesign</div>
+                        <div class="portfolio-card-title">Fact Fitness Pocking</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Modal -->
+    <div id="portfolio-modal" class="portfolio-modal">
+        <div class="portfolio-modal-content">
+            <button class="portfolio-modal-expand-btn" onclick="openPortfolioNewTab()" title="In neuem Tab öffnen">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+            </button>
+            <button class="portfolio-modal-close-btn" onclick="closePortfolioModal()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div id="portfolio-modal-loader" class="portfolio-modal-loader"></div>
+            <iframe id="portfolio-iframe" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════ PROCESS ═══════════════════════════ -->
+    <section style="background:var(--bg-void);padding:6rem 0;position:relative;z-index:2;">
+        <div style="max-width:1320px;margin:0 auto;padding:0 2rem;">
+            <div class="process-grid">
+                <!-- Left: Title -->
+                <div>
+                    <div class="reveal label-mono">004 / Prozess</div>
+                    <h2 class="reveal stagger-1 heading-lg"
+                        style="font-size:clamp(2rem,4vw,3rem);margin-bottom:1.5rem;">
+                        Vom Briefing<br>zum Launch.
+                    </h2>
+                    <p class="reveal stagger-2" style="color:var(--text-secondary);line-height:1.75;max-width:420px;">
+                        Unser bewährter 4-Schritte-Prozess stellt sicher, dass jedes Projekt termingerecht und
+                        in höchster Qualität abgeliefert wird.
+                    </p>
+                </div>
+                <!-- Right: Steps -->
+                <div style="position:relative;display:flex;flex-direction:column;gap:3rem;padding-left:3rem;">
+                    <div class="process-line"></div>
+
+                    <div class="reveal" style="display:flex;gap:1.5rem;align-items:flex-start;">
+                        <div class="process-dot" style="margin-top:0.35rem;"></div>
+                        <div>
+                            <h3
+                                style="font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:0.4rem;">
+                                Discovery & Strategie</h3>
+                            <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">
+                                Wir analysieren Ihre Zielgruppe, den Wettbewerb und definieren klare Ziele für Ihre
+                                Website.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="reveal stagger-1" style="display:flex;gap:1.5rem;align-items:flex-start;">
+                        <div class="process-dot" style="margin-top:0.35rem;"></div>
+                        <div>
+                            <h3
+                                style="font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:0.4rem;">
+                                Design & Prototyping</h3>
+                            <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">
+                                Individuelle Designs — keine Templates. Jeder Pixel sitzt, jede Interaktion ist
+                                durchdacht.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="reveal stagger-2" style="display:flex;gap:1.5rem;align-items:flex-start;">
+                        <div class="process-dot" style="margin-top:0.35rem;"></div>
+                        <div>
+                            <h3
+                                style="font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:0.4rem;">
+                                Entwicklung & Testing</h3>
+                            <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">
+                                Sauberer, performanter Code. Getestet auf allen Geräten, optimiert für Geschwindigkeit
+                                und SEO.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="reveal stagger-3" style="display:flex;gap:1.5rem;align-items:flex-start;">
+                        <div class="process-dot" style="margin-top:0.35rem;"></div>
+                        <div>
+                            <h3
+                                style="font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:0.4rem;">
+                                Launch & Support</h3>
+                            <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">
+                                Go-Live, Übergabe aller Zugänge und optionaler Langzeit-Support für Ihre Website.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════ CTA ═══════════════════════════ -->
+    <section
+        style="background:var(--bg-deep);padding:6rem 0;position:relative;overflow:hidden;border-top:1px solid var(--border);z-index:2;">
+        <div class="grid-bg accent" style="opacity:0.2;"></div>
+        <div
+            style="position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,var(--neon-dim),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;">
+        </div>
+
+        <div style="max-width:700px;margin:0 auto;padding:0 2rem;text-align:center;position:relative;z-index:2;">
+            <div class="reveal label-mono" style="justify-content:center;">005 / Let's go</div>
+            <h2 class="reveal stagger-1 heading-lg" style="font-size:clamp(2.5rem,5vw,4rem);margin-bottom:1rem;">
+                Bereit für eine Website, die <span style="color:var(--neon);">wirklich</span> performt?
+            </h2>
+            <p class="reveal stagger-2"
+                style="color:var(--text-secondary);font-size:1.05rem;line-height:1.7;margin-bottom:2.5rem;">
+                Lassen Sie uns Ihr nächstes Projekt besprechen.
+                Kostenloses Erstgespräch — unverbindlich und direkt.
+            </p>
+            <a href="kontakt.html" class="reveal stagger-3 cta-neon filled large">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path d="M22 2L11 13" />
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z" />
+                </svg>
+                Gespräch starten
+            </a>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo" style="margin-bottom:0.5rem;">
+                        <img src="Ryqen_logo.png" alt="Ryqen" class="nav-logo-img">
+                    </a>
+                    <p>Websites die konvertieren. Moderne Webentwicklung für Unternehmen, die online wachsen wollen.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <a href="index.html">Home</a>
+                    <a href="leistungen.html">Leistungen</a>
+                    <a href="kontakt.html">Kontakt</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Social</h4>
+                    <a href="https://www.instagram.com/ryqen.de/" target="_blank">Instagram</a>
+                    <a href="https://www.linkedin.com/company/ryqen" target="_blank">LinkedIn</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Impressum</a>
+                    <a href="#">Datenschutz</a>
+                    <a href="#">AGB</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2025 Ryqen</span>
+                <div class="footer-bottom-links">
+                    <a href="#">Impressum</a>
+                    <a href="#">Datenschutz</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
