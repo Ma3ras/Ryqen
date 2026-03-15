@@ -31,15 +31,71 @@ export default async function handler(req, res) {
     const notification = await resend.emails.send({
       from: 'Ryqen Website <info@ryqen.de>',
       to: ['info@ryqen.de'],
-      subject: `Neue Projektanfrage von ${name}`,
+      subject: `[Ryqen Lead] Neue Anfrage von ${name}`,
       html: `
-        <h2>Neue Kontaktanfrage</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>E-Mail:</strong> ${email}</p>
-        <p><strong>Projektart:</strong> ${displayProject}</p>
-        <p><strong>Paket:</strong> ${displaySize}</p>
-        <p><strong>Budget:</strong> ${budget || 'Nicht angegeben'}</p>
-        <p><strong>Nachricht:</strong><br/>${message.replace(/\n/g, '<br/>')}</p>
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <meta charset="utf-8">
+        <style>
+          body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #050508; color: #e2e8f0; }
+          .main { background-color: #0d0f14; margin: 40px auto 0 auto; width: 100%; max-width: 600px; border-radius: 8px; border: 1px solid #1a1d24; border-top: 4px solid #3b82f6; padding-bottom: 20px; }
+          .logo-container { text-align: center; padding: 30px 20px 20px 20px; border-bottom: 1px solid #1a1d24; }
+          .content { padding: 30px 40px 40px 40px; }
+          h1 { font-size: 22px; color: #ffffff; margin-top: 0; margin-bottom: 25px; font-weight: 700; display:flex; align-items:center; gap:10px; }
+          .tag { background: #1a1d24; color: #3b82f6; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+          .data-grid { display: grid; grid-template-columns: 100px 1fr; border: 1px solid #1a1d24; border-radius: 6px; overflow: hidden; margin-bottom: 25px;}
+          .data-row { display: flex; border-bottom: 1px solid #1a1d24; font-size: 15px; }
+          .data-row:last-child { border-bottom: none; }
+          .data-label { width: 130px; background: #11131a; padding: 12px 15px; color: #94a3b8; font-weight: 600; font-size: 14px; border-right: 1px solid #1a1d24; }
+          .data-value { padding: 12px 15px; color: #ffffff; flex: 1; word-break: break-all; }
+          .highlight { color: #00ff88; font-weight: 600; }
+          .message-box { background: #11131a; border: 1px solid #1a1d24; border-radius: 6px; padding: 20px; font-size: 15px; line-height: 1.6; color: #cbd5e1; margin-top: 25px; white-space: pre-wrap; }
+          .message-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; font-weight: bold; margin-bottom: 10px; display: block; }
+        </style>
+        </head>
+        <body>
+          <div style="background-color: #050508; width: 100%; padding-bottom: 40px;">
+            <div class="main">
+              <div class="logo-container">
+                <img src="https://ryqen.de/Ryqen_logo.png" alt="RYQEN" style="height: 30px; width: auto; display: block; margin: 0 auto; opacity: 0.8;">
+              </div>
+              <div class="content">
+                <h1><span class="tag">New Lead</span> Neue Kontaktanfrage</h1>
+                
+                <div class="data-grid">
+                  <div class="data-row">
+                    <div class="data-label">Name</div>
+                    <div class="data-value highlight">${name}</div>
+                  </div>
+                  <div class="data-row">
+                    <div class="data-label">E-Mail</div>
+                    <div class="data-value"><a href="mailto:${email}" style="color: #3b82f6; text-decoration: none;">${email}</a></div>
+                  </div>
+                  <div class="data-row">
+                    <div class="data-label">Projektart</div>
+                    <div class="data-value">${displayProject}</div>
+                  </div>
+                  <div class="data-row">
+                    <div class="data-label">Paket</div>
+                    <div class="data-value">${displaySize}</div>
+                  </div>
+                  <div class="data-row">
+                    <div class="data-label">Budget</div>
+                    <div class="data-value">${budget || '<span style="color:#64748b;font-style:italic;">Nicht angegeben</span>'}</div>
+                  </div>
+                </div>
+
+                <div class="message-box">
+                  <span class="message-label">Nachricht</span>
+                  ${message.replace(/\n/g, '<br/>')}
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </body>
+        </html>
       `
     });
 
