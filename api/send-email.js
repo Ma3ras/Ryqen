@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
     // 1. Send notification to Ryqen
     const notification = await resend.emails.send({
-      from: 'Ryqen Website <onboarding@resend.dev>', // Update this to your verified domain e.g. 'no-reply@ryqen.de' once verified
+      from: 'Ryqen Website <info@ryqen.de>',
       to: ['info@ryqen.de'],
       subject: `Neue Projektanfrage von ${name}`,
       html: `
@@ -28,7 +28,7 @@ export default async function handler(req, res) {
 
     // 2. Send styled Auto-Responder to user
     const autoResponder = await resend.emails.send({
-      from: 'Ryqen <onboarding@resend.dev>', // Update to 'info@ryqen.de' once verified
+      from: 'Ryqen <info@ryqen.de>',
       to: [email],
       subject: `Vielen Dank für Ihre Anfrage, ${name.split(' ')[0]}!`,
       html: `
