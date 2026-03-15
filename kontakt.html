@@ -76,12 +76,7 @@
 
                 <!-- Form -->
             <div>
-                <form class="reveal" action="https://formspree.io/f/DEINE_FORMSPREE_ID" method="POST" id="contact-form">
-                    <!-- Formspree Config - redirect after success -->
-                    <input type="hidden" name="_next" value="https://ryqen.de/danke.html">
-                    <input type="text" name="_gotcha" style="display:none" />
-                    <input type="hidden" name="_subject" value="Neue Projektanfrage von ryqen.de">
-
+                <form class="reveal" action="/api/send-email" method="POST" id="contact-form">
                     <div class="form-field">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" placeholder="Ihr Name" required>
@@ -371,7 +366,43 @@
             }
         }
 
+        // Vercel API Submission Handler
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            var btn = this.querySelector('button[type="submit"]');
+            var originalText = btn.innerHTML;
+            btn.innerHTML = 'Wird gesendet...';
+            btn.style.opacity = '0.7';
+            btn.style.pointerEvents = 'none';
 
+            var formData = new FormData(this);
+            var jsonData = Object.fromEntries(formData.entries());
+            
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonData)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Fehler beim Senden. (' + response.status + ')');
+                }
+                
+                window.location.href = 'danke.html';
+            } catch (err) {
+                console.error('API Error:', err);
+                btn.innerHTML = 'Fehler aufgetreten. Bitte erneut versuchen.';
+                setTimeout(function() {
+                    btn.innerHTML = originalText;
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'auto';
+                }, 3000);
+            }
+        });
     </script>
     <script src="scripts.js" defer></script>
 </body>

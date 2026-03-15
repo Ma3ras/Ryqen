@@ -8,6 +8,20 @@
     "screenshot": "node screenshot.mjs"
   },
   "dependencies": {
-    "puppeteer": "^24.0.0"
-  }
+    "puppeteer": "^24.0.0",
+    "resend": "^6.9.3"
+  },
+  "description": "",
+  "main": "cookie-consent.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ma3ras/Ryqen.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ma3ras/Ryqen/issues"
+  },
+  "homepage": "https://github.com/Ma3ras/Ryqen#readme"
 }
