@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vielen Dank | Ryqen</title>
+    <meta name="robots" content="noindex, follow">
+    <link rel="icon" type="image/png" href="Ryqen_Favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav id="navbar" class="site-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="Ryqen_logo.png" alt="Ryqen" class="nav-logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="leistungen.html" class="nav-link">Leistungen</a>
+                <a href="index.html#portfolio" class="nav-link">Arbeiten</a>
+                <a href="kontakt.html" class="nav-link">Kontakt</a>
+                <a href="kontakt.html" class="cta-neon">Projekt starten</a>
+            </div>
+            <button id="burger" class="burger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <div id="mobileMenu" class="mobile-menu">
+        <button id="closeMenu" class="mobile-close">×</button>
+        <a href="index.html">Home</a>
+        <a href="leistungen.html">Leistungen</a>
+        <a href="index.html#portfolio">Arbeiten</a>
+        <a href="kontakt.html">Kontakt</a>
+    </div>
+
+    <main>
+        <!-- PAGE CONTENT -->
+        <section
+            style="min-height:75vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 2rem;background:var(--bg-void);position:relative;text-align:center;">
+            <div class="grid-bg" style="opacity:0.2;"></div>
+            <div style="max-width:800px;margin:0 auto;width:100%;position:relative;z-index:2;">
+                <div class="reveal label-mono" style="justify-content:center;">Erfolg</div>
+                <h1 class="reveal stagger-1 heading-xl" style="font-size:clamp(2.8rem,6vw,5rem);margin-bottom:1.5rem;">
+                    Vielen <span style="color:var(--neon);">Dank</span>.
+                </h1>
+                <p class="reveal stagger-2"
+                    style="color:var(--text-secondary);font-size:1.1rem;margin-bottom:3rem;line-height:1.7;">
+                    Ihre Nachricht wurde erfolgreich versendet.<br>Wir werden uns innerhalb von 24 Stunden bei Ihnen melden.
+                </p>
+                <a href="index.html" class="reveal stagger-3 cta-neon large">Zurück zur Startseite</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo" style="margin-bottom:0.5rem;">
+                        <img src="Ryqen_logo.png" alt="Ryqen" class="nav-logo-img">
+                    </a>
+                    <p>Websites die konvertieren. Für Unternehmen, die online wachsen wollen.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <a href="index.html">Home</a>
+                    <a href="leistungen.html">Leistungen</a>
+                    <a href="kontakt.html">Kontakt</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Social</h4>
+                    <a href="https://www.instagram.com/ryqen.de/" target="_blank">Instagram</a>
+                    <a href="https://www.linkedin.com/company/ryqen" target="_blank">LinkedIn</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="impressum.html">Impressum</a>
+                    <a href="datenschutz.html">Datenschutz</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Ryqen — Webdesign Passau</span>
+                <div class="footer-bottom-links">
+                    <a href="impressum.html">Impressum</a>
+                    <a href="datenschutz.html">Datenschutz</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE CONSENT BANNER -->
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="cookie-banner-inner">
+            <div class="cookie-banner-text">
+                <p>Wir verwenden Cookies, um Ihre Erfahrung zu verbessern und unsere Website zu analysieren.
+                    Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button class="cookie-btn reject" onclick="rejectCookies()">Ablehnen</button>
+                <button class="cookie-btn accept" onclick="acceptCookies()">Akzeptieren</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="cookie-consent.js"></script>
+    <script src="scripts.js" defer></script>
+</body>
+
+</html>

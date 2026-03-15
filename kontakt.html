@@ -76,7 +76,13 @@
 
             <!-- Form -->
             <div>
-                <form class="reveal" action="#" method="POST">
+                <form class="reveal" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="6eca5569-4332-421b-8e27-e43096ca20b1">
+                    <input type="hidden" name="subject" value="Neue Projektanfrage von ryqen.de">
+                    <!-- Für lokales Testing geht /danke.html, auf dem Server ebenso -->
+                    <input type="hidden" name="redirect" value="https://ryqen.de/danke.html">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                    
                     <div class="form-field">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" placeholder="Ihr Name" required>
@@ -94,6 +100,19 @@
                             <option value="landing">Landing Page</option>
                             <option value="other">Sonstiges</option>
                         </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="project-size">Projekt Größe</label>
+                        <select id="project-size" name="project-size" style="appearance:none;" onchange="toggleBudgetField()">
+                            <option value="" disabled selected>Wählen Sie ein Paket</option>
+                            <option value="landing">Landing Page — 699€</option>
+                            <option value="business">Business — 999€</option>
+                            <option value="premium">Premium — Custom</option>
+                        </select>
+                    </div>
+                    <div class="form-field" id="budget-field" style="display:none;overflow:hidden;max-height:0;opacity:0;transition:max-height 0.4s ease,opacity 0.3s ease,margin 0.3s ease;margin-bottom:0;">
+                        <label for="budget">Budget</label>
+                        <input type="text" id="budget" name="budget" placeholder="z.B. 2.000€ — 5.000€">
                     </div>
                     <div class="form-field">
                         <label for="message">Nachricht</label>
@@ -144,8 +163,8 @@
                                 <p
                                     style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;">
                                     E-Mail</p>
-                                <a href="mailto:kontakt@ryqen.de"
-                                    style="color:var(--text-white);font-size:0.95rem;">kontakt@ryqen.de</a>
+                                <a href="mailto:info@ryqen.de"
+                                    style="color:var(--text-white);font-size:0.95rem;">info@ryqen.de</a>
                             </div>
                         </div>
                         <div style="display:flex;gap:1rem;align-items:center;">
@@ -161,7 +180,7 @@
                                 <p
                                     style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;">
                                     Standort</p>
-                                <p style="color:var(--text-white);font-size:0.95rem;">Remote — Deutschland</p>
+                                <p style="color:var(--text-white);font-size:0.95rem;">Passau, Deutschland</p>
                             </div>
                         </div>
                     </div>
@@ -267,6 +286,25 @@
     </div>
 
     <script src="cookie-consent.js"></script>
+    <script>
+        function toggleBudgetField() {
+            var sel = document.getElementById('project-size');
+            var field = document.getElementById('budget-field');
+            if (sel.value === 'premium') {
+                field.style.display = 'block';
+                requestAnimationFrame(function() {
+                    field.style.maxHeight = '120px';
+                    field.style.opacity = '1';
+                    field.style.marginBottom = '1.5rem';
+                });
+            } else {
+                field.style.maxHeight = '0';
+                field.style.opacity = '0';
+                field.style.marginBottom = '0';
+                setTimeout(function() { field.style.display = 'none'; }, 400);
+            }
+        }
+    </script>
     <script src="scripts.js" defer></script>
 </body>
 
