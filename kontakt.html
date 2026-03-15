@@ -74,17 +74,13 @@
     <section style="background:var(--bg-void);padding:4rem 0 6rem;">
         <div class="kontakt-grid" style="max-width:1320px;margin:0 auto;padding:0 2rem;">
 
-            <!-- Form -->
+                <!-- Form -->
             <div>
-                <form class="reveal" action="https://api.web3forms.com/submit" method="POST" id="contact-form">
-                    <!-- Web3Forms Config -->
-                    <input type="hidden" name="access_key" value="6eca5569-4332-421b-8e27-e43096ca20b1">
-                    <input type="hidden" name="subject" value="Neue Projektanfrage von ryqen.de">
-                    <input type="hidden" name="redirect" value="https://ryqen.de/danke.html">
-                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-                    
-                    <!-- Trigger Make.com Automation via Web3Forms Webhook -->
-                    <input type="hidden" name="webhook" value="https://hook.eu2.make.com/d6cgut6j6ymhah9sath4h0oc48wgvs1c">
+                <form class="reveal" action="https://formspree.io/f/DEINE_FORMSPREE_ID" method="POST" id="contact-form">
+                    <!-- Formspree Config - redirect after success -->
+                    <input type="hidden" name="_next" value="https://ryqen.de/danke.html">
+                    <input type="text" name="_gotcha" style="display:none" />
+                    <input type="hidden" name="_subject" value="Neue Projektanfrage von ryqen.de">
 
                     <div class="form-field">
                         <label for="name">Name</label>
