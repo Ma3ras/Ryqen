@@ -76,13 +76,7 @@
 
             <!-- Form -->
             <div>
-                <form class="reveal" action="https://api.web3forms.com/submit" method="POST">
-                    <input type="hidden" name="access_key" value="6eca5569-4332-421b-8e27-e43096ca20b1">
-                    <input type="hidden" name="subject" value="Neue Projektanfrage von ryqen.de">
-                    <!-- Für lokales Testing geht /danke.html, auf dem Server ebenso -->
-                    <input type="hidden" name="redirect" value="https://ryqen.de/danke.html">
-                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-                    
+                <form class="reveal" action="https://hook.eu2.make.com/d6cgut6j6ymhah9sath4h0oc48wgvs1c" method="POST" id="contact-form">
                     <div class="form-field">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" placeholder="Ihr Name" required>
@@ -371,6 +365,34 @@
                 setTimeout(function() { container.style.display = 'none'; }, 500);
             }
         }
+
+        // Webhook Submission Handler
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            var btn = this.querySelector('button[type="submit"]');
+            var originalText = btn.innerHTML;
+            btn.innerHTML = 'Wird gesendet...';
+            btn.style.opacity = '0.7';
+            btn.style.pointerEvents = 'none';
+
+            var formData = new FormData(this);
+            
+            fetch(this.action, {
+                method: 'POST',
+                body: formData
+            }).then(function() {
+                window.location.href = 'danke.html';
+            }).catch(function(err) {
+                console.error('Error:', err);
+                btn.innerHTML = 'Fehler aufgetreten. Bitte erneut versuchen.';
+                setTimeout(function() {
+                    btn.innerHTML = originalText;
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'auto';
+                }, 3000);
+            });
+        });
     </script>
     <script src="scripts.js" defer></script>
 </body>
