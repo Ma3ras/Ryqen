@@ -120,15 +120,41 @@
                             required></textarea>
                     </div>
                     <div class="reveal stagger-1"
-                        style="display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:2rem;">
+                        style="display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:1.5rem;">
                         <input type="checkbox" id="privacy" name="privacy" required
                             style="margin-top:0.3rem;accent-color:var(--neon);">
                         <label for="privacy"
                             style="font-size:0.82rem;color:var(--text-secondary);text-transform:none;letter-spacing:0;font-family:var(--font-body);">
                             Ich stimme der Verarbeitung meiner Daten gemäß der
-                            <a href="#" style="color:var(--neon);text-decoration:underline;">Datenschutzerklärung</a>
+                            <a href="datenschutz.html" style="color:var(--neon);text-decoration:underline;">Datenschutzerklärung</a>
                             zu.
                         </label>
+                    </div>
+
+                    <!-- Optional Calendar Toggle -->
+                    <div class="reveal stagger-1" style="margin-bottom:2rem;padding:1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;" onclick="document.getElementById('toggle-calendar').click()">
+                            <div>
+                                <h4 style="font-family:var(--font-display);font-size:1.1rem;color:var(--text-white);margin-bottom:0.25rem;">Erstgespräch terminieren? (Optional)</h4>
+                                <p style="font-size:0.85rem;color:var(--text-secondary);margin:0;">Buchen Sie direkt einen verbindlichen Termin für unser Gespräch.</p>
+                            </div>
+                            <div style="position:relative;">
+                                <input type="checkbox" id="toggle-calendar" onchange="toggleCalendarField(event)" style="opacity:0;position:absolute;width:0;height:0;">
+                                <div class="toggle-switch" id="calendar-switch" style="width:44px;height:24px;background:var(--bg-deep);border:1px solid var(--border);border-radius:12px;position:relative;transition:all 0.3s;">
+                                    <div class="toggle-knob" style="width:18px;height:18px;background:var(--text-muted);border-radius:50%;position:absolute;top:2px;left:2px;transition:all 0.3s;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Calendar Embed Container -->
+                        <div id="calendar-container" style="display:none;max-height:0;opacity:0;transition:max-height 0.5s ease,opacity 0.4s ease,margin 0.4s ease;overflow:hidden;margin-top:0;">
+                            <!-- Cal inline embed code begins -->
+                            <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline"></div>
+                            <script type="text/javascript">
+                              (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.cal = C.cal || function () { let cal = C.cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+                            Cal("init", {origin:"https://cal.com"});
+                            </script>
+                        </div>
                     </div>
                     <button type="submit" class="reveal stagger-2 cta-neon filled large" style="cursor:pointer;">
                         <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -302,6 +328,47 @@
                 field.style.opacity = '0';
                 field.style.marginBottom = '0';
                 setTimeout(function() { field.style.display = 'none'; }, 400);
+            }
+        }
+
+        let calLoaded = false;
+        function toggleCalendarField(e) {
+            e.stopPropagation();
+            var isChecked = document.getElementById('toggle-calendar').checked;
+            var container = document.getElementById('calendar-container');
+            var switchBg = document.getElementById('calendar-switch');
+            var knob = switchBg.querySelector('.toggle-knob');
+
+            if (isChecked) {
+                switchBg.style.background = 'var(--neon)';
+                knob.style.transform = 'translateX(20px)';
+                knob.style.background = '#000';
+                
+                container.style.display = 'block';
+                requestAnimationFrame(function() {
+                    container.style.marginTop = '1.5rem';
+                    container.style.maxHeight = '800px';
+                    container.style.opacity = '1';
+                });
+
+                if(!calLoaded) {
+                    Cal("inline", {
+                        elementOrSelector:"#my-cal-inline",
+                        calLink: "ryqen/15min", 
+                        layout: "month_view"
+                    });
+                    Cal("ui", {"styles":{"branding":{"brandColor":"#00ff88"}},"hideEventTypeDetails":false,"layout":"month_view"});
+                    calLoaded = true;
+                }
+            } else {
+                switchBg.style.background = 'var(--bg-deep)';
+                knob.style.transform = 'translateX(0)';
+                knob.style.background = 'var(--text-muted)';
+
+                container.style.maxHeight = '0';
+                container.style.opacity = '0';
+                container.style.marginTop = '0';
+                setTimeout(function() { container.style.display = 'none'; }, 500);
             }
         }
     </script>
