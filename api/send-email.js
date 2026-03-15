@@ -10,6 +10,23 @@ export default async function handler(req, res) {
   try {
     const { name, email, project, 'project-size': projectSize, budget, message } = req.body;
 
+    // Map raw values to human-readable German strings
+    const projectMap = {
+      'new': 'Neue Website',
+      'redesign': 'Website Redesign',
+      'landing': 'Landing Page',
+      'other': 'Sonstiges'
+    };
+    
+    const sizeMap = {
+      'landing': 'Landing Page — 699€',
+      'business': 'Business — 999€',
+      'premium': 'Premium — Custom'
+    };
+
+    const displayProject = projectMap[project] || project;
+    const displaySize = sizeMap[projectSize] || projectSize;
+
     // 1. Send notification to Ryqen
     const notification = await resend.emails.send({
       from: 'Ryqen Website <info@ryqen.de>',
@@ -19,8 +36,8 @@ export default async function handler(req, res) {
         <h2>Neue Kontaktanfrage</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>E-Mail:</strong> ${email}</p>
-        <p><strong>Projektart:</strong> ${project}</p>
-        <p><strong>Paket:</strong> ${projectSize}</p>
+        <p><strong>Projektart:</strong> ${displayProject}</p>
+        <p><strong>Paket:</strong> ${displaySize}</p>
         <p><strong>Budget:</strong> ${budget || 'Nicht angegeben'}</p>
         <p><strong>Nachricht:</strong><br/>${message.replace(/\n/g, '<br/>')}</p>
       `
@@ -54,7 +71,7 @@ export default async function handler(req, res) {
           <div style="background-color: #050508; width: 100%; padding-bottom: 40px;">
             <div class="main">
               <div class="logo-container">
-                <h2 style="color:#00ff88; margin:0; font-family: monospace; letter-spacing: 2px;">RYQEN.</h2>
+                <img src="https://ryqen.de/Ryqen_logo.png" alt="RYQEN" style="height: 35px; width: auto; display: block; margin: 0 auto;">
               </div>
               <div class="content">
                 <h1>Hey ${name.split(' ')[0]}, let's talk!</h1>
@@ -62,14 +79,14 @@ export default async function handler(req, res) {
                 
                 <div class="info-box">
                   <p class="info-text">
-                    <strong>Ihr Projekt:</strong> ${project}
+                    <strong>Ihr Projekt:</strong> ${displayProject}
                   </p>
                 </div>
 
                 <p>Ich sichte gerade Ihre Daten und werde mich innerhalb der nächsten <span class="highlight">24 Stunden</span> persönlich bei Ihnen unter dieser E-Mail-Adresse melden, um die nächsten Schritte zu besprechen.</p>
                 <p>Sollten Sie in der Zwischenzeit noch Details ergänzen wollen, antworten Sie einfach direkt auf diese E-Mail.</p>
                 <p>Bis bald und viele Grüße aus Passau,<br>
-                <span class="highlight">Ihr Ryqen Team</span></p>
+                <span class="highlight">Maximilian Endl</span></p>
               </div>
             </div>
             <div class="footer">
