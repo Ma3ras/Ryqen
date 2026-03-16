@@ -875,7 +875,7 @@ spline-viewer::part(watermark) {
     font-size: 3rem;
     font-weight: 800;
     letter-spacing: -0.02em;
-    color: var(--text-muted);
+    color: rgba(232, 232, 237, 0.45);
     white-space: nowrap;
     flex-shrink: 0;
 }
@@ -976,7 +976,8 @@ spline-viewer::part(watermark) {
     max-width: 280px;
 }
 
-.footer-col h4 {
+.footer-col h4,
+.footer-col .footer-heading {
     font-family: var(--font-mono);
     font-size: 0.72rem;
     font-weight: 500;
@@ -1007,7 +1008,7 @@ spline-viewer::part(watermark) {
     font-family: var(--font-mono);
     font-size: 0.7rem;
     letter-spacing: 0.05em;
-    color: var(--text-muted);
+    color: rgba(232, 232, 237, 0.5);
 }
 
 .footer-bottom-links {
