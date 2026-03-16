@@ -44,11 +44,11 @@ export default async function handler(req, res) {
           .content { padding: 30px 40px 40px 40px; }
           h1 { font-size: 22px; color: #ffffff; margin-top: 0; margin-bottom: 25px; font-weight: 700; display:flex; align-items:center; gap:10px; }
           .tag { background: #1a1d24; color: #3b82f6; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
-          .data-grid { display: grid; grid-template-columns: 100px 1fr; border: 1px solid #1a1d24; border-radius: 6px; overflow: hidden; margin-bottom: 25px;}
+          .data-grid { border: 1px solid #1a1d24; border-radius: 6px; overflow: hidden; margin-bottom: 25px;}
           .data-row { display: flex; border-bottom: 1px solid #1a1d24; font-size: 15px; }
           .data-row:last-child { border-bottom: none; }
           .data-label { width: 130px; background: #11131a; padding: 12px 15px; color: #94a3b8; font-weight: 600; font-size: 14px; border-right: 1px solid #1a1d24; }
-          .data-value { padding: 12px 15px; color: #ffffff; flex: 1; word-break: break-all; }
+          .data-value { padding: 12px 15px; color: #ffffff; flex: 1; word-wrap: break-word; word-break: break-word; }
           .highlight { color: #00ff88; font-weight: 600; }
           .message-box { background: #11131a; border: 1px solid #1a1d24; border-radius: 6px; padding: 20px; font-size: 15px; line-height: 1.6; color: #cbd5e1; margin-top: 25px; white-space: pre-wrap; }
           .message-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; font-weight: bold; margin-bottom: 10px; display: block; }
