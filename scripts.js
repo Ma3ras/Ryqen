@@ -16,8 +16,6 @@ function loadSpline() {
 ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'].forEach(evt => {
     window.addEventListener(evt, loadSpline, { passive: true, once: true });
 });
-// Fallback
-setTimeout(loadSpline, 3500);
 
 /* Ryqen — Neon Grid Scripts */
 document.addEventListener('DOMContentLoaded', () => {
@@ -131,26 +129,31 @@ document.addEventListener('DOMContentLoaded', () => {
         const originalHTML = marqueeTrack.innerHTML;
         const viewportWidth = window.innerWidth;
 
-        // Clone until we have at least 3x the viewport width
-        let safety = 0;
-        while (marqueeTrack.scrollWidth < viewportWidth * 3 && safety < 20) {
-            marqueeTrack.innerHTML += originalHTML;
-            safety++;
-        }
-
-        // The original content width is 1 "set", compute how many sets we have
-        // We want to scroll exactly the width of ONE set (originalHTML)
-        // Create a temp element to measure
+        // Create a temp element to measure ONE set width WITHOUT forcing a reflow loop
         const temp = document.createElement('div');
-        temp.style.cssText = 'display:flex;align-items:center;width:max-content;position:absolute;visibility:hidden;';
+        temp.style.cssText = 'display:inline-flex;align-items:center;width:max-content;position:absolute;visibility:hidden;white-space:nowrap;';
         temp.innerHTML = originalHTML;
         document.body.appendChild(temp);
-        const oneSetWidth = temp.scrollWidth;
-        document.body.removeChild(temp);
 
-        // Set the offset to scroll exactly one set width in pixels
-        marqueeTrack.style.setProperty('--marquee-offset', `-${oneSetWidth}px`);
-        marqueeTrack.style.animation = 'marquee 25s linear infinite';
+        // Defer read/write to prevent layout thrashing (Erzwungener dynamischer Umbruch)
+        requestAnimationFrame(() => {
+            const oneSetWidth = temp.offsetWidth;
+            document.body.removeChild(temp);
+
+            if (oneSetWidth > 0) {
+                // Calculate how many clones we need to fill 3x viewport
+                const clonesNeeded = Math.ceil((viewportWidth * 3) / oneSetWidth);
+                let newHTML = originalHTML;
+                for (let i = 1; i < clonesNeeded; i++) {
+                    newHTML += originalHTML;
+                }
+                
+                // Batch DOM writes
+                marqueeTrack.innerHTML = newHTML;
+                marqueeTrack.style.setProperty('--marquee-offset', `-${oneSetWidth}px`);
+                marqueeTrack.style.animation = 'marquee 25s linear infinite';
+            }
+        });
     }
 
 });
