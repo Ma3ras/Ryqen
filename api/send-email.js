@@ -58,7 +58,7 @@ export default async function handler(req, res) {
           <div style="background-color: #050508; width: 100%; padding-bottom: 40px;">
             <div class="main">
               <div class="logo-container">
-                <img src="https://ryqen.de/Ryqen_logo.png" alt="RYQEN" style="height: 30px; width: auto; display: block; margin: 0 auto; opacity: 0.8;">
+                <img src="https://ryqen.de/Ryqen_logo.webp" alt="RYQEN" style="height: 30px; width: auto; display: block; margin: 0 auto; opacity: 0.8;">
               </div>
               <div class="content">
                 <h1><span class="tag">New Lead</span> Neue Kontaktanfrage</h1>
@@ -127,7 +127,7 @@ export default async function handler(req, res) {
           <div style="background-color: #050508; width: 100%; padding-bottom: 40px;">
             <div class="main">
               <div class="logo-container">
-                <img src="https://ryqen.de/Ryqen_logo.png" alt="RYQEN" style="height: 35px; width: auto; display: block; margin: 0 auto;">
+                <img src="https://ryqen.de/Ryqen_logo.webp" alt="RYQEN" style="height: 35px; width: auto; display: block; margin: 0 auto;">
               </div>
               <div class="content">
                 <h1>Hey ${name.split(' ')[0]}, let's talk!</h1>
