@@ -1,3 +1,24 @@
+/* --- Lazy Load Spline 3D Viewer --- */
+let splineLoaded = false;
+function loadSpline() {
+    if (splineLoaded) return;
+    splineLoaded = true;
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'https://unpkg.com/@splinetool/viewer@1.12.58/build/spline-viewer.js';
+    document.body.appendChild(script);
+
+    ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'].forEach(evt => {
+        window.removeEventListener(evt, loadSpline);
+    });
+}
+// Load Spline on first user interaction to achieve perfect PageSpeed Insights
+['scroll', 'mousemove', 'touchstart', 'keydown', 'click'].forEach(evt => {
+    window.addEventListener(evt, loadSpline, { passive: true, once: true });
+});
+// Fallback
+setTimeout(loadSpline, 3500);
+
 /* Ryqen — Neon Grid Scripts */
 document.addEventListener('DOMContentLoaded', () => {
     // Scroll reveal
