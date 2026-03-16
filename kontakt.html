@@ -140,26 +140,34 @@
                             </div>
                         </div>
                         
-                        <!-- Calendar Embed Container -->
-                        <div id="calendar-container" style="max-height:0;opacity:0;transition:max-height 0.8s ease,opacity 0.5s ease,margin 0.4s ease;overflow:hidden;margin-top:0;">
-                            <div style="width:100%;height:620px;overflow:hidden;border-radius:8px;position:relative;">
-                                <iframe src="https://cal.com/ryqen/30min?embed=true&layout=month_view&theme=dark" 
-                                    style="width:100%;height:100%;border:none;" title="Erstgespräch Terminieren">
-                                </iframe>
-                                <!-- Blocking overlay while it animates to prevent scroll hijacking -->
-                                <div id="cal-overlay" style="position:absolute;top:0;left:0;right:0;bottom:0;background:transparent;z-index:10;transition:visibility 0.5s;"></div>
-                            </div>
+                        <div id="booking-notice" style="display:none;margin-top:1rem;padding:1rem;background:var(--bg-deep);border:1px solid var(--border);border-radius:6px;font-size:0.85rem;color:var(--text-secondary);">
+                            <span style="color:var(--neon);font-weight:600;">✓ Ausgewählt.</span> Nach dem kurzen Ausfüllen des Formulars leiten wir Sie zur Terminwahl weiter, ohne dass Sie Ihre Daten doppelt eingeben müssen.
                         </div>
                     </div>
-                    <button type="submit" class="reveal stagger-2 cta-neon filled large" style="cursor:pointer;">
-                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    <button type="submit" id="submit-btn" class="reveal stagger-2 cta-neon filled large" style="cursor:pointer; transition: all 0.3s ease;">
+                        <svg id="submit-icon" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             stroke-width="2">
                             <path d="M22 2L11 13" />
                             <path d="M22 2L15 22L11 13L2 9L22 2Z" />
                         </svg>
-                        Nachricht senden
+                        <span id="submit-text">Nachricht senden</span>
                     </button>
                 </form>
+
+                <!-- Step 2: Calendar Wrapper (Hidden initially) -->
+                <div id="success-calendar-wrapper" style="display:none; animation: fadeIn 0.5s ease forwards;">
+                    <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem;">
+                        <div style="width:24px;height:24px;border-radius:50%;background:var(--neon);display:flex;align-items:center;justify-content:center;color:#000;">
+                            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                        </div>
+                        <span style="color:var(--neon);font-family:var(--font-mono);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;">Schritt 1 erfolgreich</span>
+                    </div>
+                    <h3 style="font-family:var(--font-display);font-size:1.8rem;color:var(--text-white);margin-bottom:0.5rem;">Bitte wählen Sie Ihren Termin.</h3>
+                    <p style="color:var(--text-secondary);margin-bottom:2rem;">Wir haben Ihre Anfrage erhalten. Suchen Sie sich nun einfach einen passenden Slot für unser unverbindliches Erstgespräch aus.</p>
+                    <div style="width:100%;height:620px;overflow:hidden;border-radius:12px;border:1px solid var(--border);position:relative;background:var(--bg-deep);">
+                        <iframe id="cal-iframe-success" src="" style="width:100%;height:100%;border:none;" title="Termin buchen"></iframe>
+                    </div>
+                </div>
             </div>
 
             <!-- Info Side -->
@@ -326,40 +334,29 @@
             }
         }
 
-        let calLoaded = false;
         function toggleCalendarField(e) {
             e.stopPropagation();
             var isChecked = document.getElementById('toggle-calendar').checked;
-            var container = document.getElementById('calendar-container');
             var switchBg = document.getElementById('calendar-switch');
             var knob = switchBg.querySelector('.toggle-knob');
+            var notice = document.getElementById('booking-notice');
+            var submitText = document.getElementById('submit-text');
+            var submitIcon = document.getElementById('submit-icon');
 
             if (isChecked) {
                 switchBg.style.background = 'var(--neon)';
                 knob.style.transform = 'translateX(20px)';
                 knob.style.background = '#000';
-                
-                requestAnimationFrame(function() {
-                    container.style.marginTop = '1.5rem';
-                    container.style.maxHeight = '800px';
-                    container.style.opacity = '1';
-                });
-
-                if(!calLoaded) {
-                    setTimeout(function() {
-                        var overlay = document.getElementById('cal-overlay');
-                        if (overlay) overlay.style.visibility = 'hidden';
-                        calLoaded = true;
-                    }, 500); // Remove overlay after animation finishes
-                }
+                notice.style.display = 'block';
+                submitText.innerHTML = 'Weiter zur Terminwahl &rarr;';
+                submitIcon.style.display = 'none';
             } else {
                 switchBg.style.background = 'var(--bg-deep)';
                 knob.style.transform = 'translateX(0)';
                 knob.style.background = 'var(--text-muted)';
-
-                container.style.maxHeight = '0';
-                container.style.opacity = '0';
-                container.style.marginTop = '0';
+                notice.style.display = 'none';
+                submitText.innerHTML = 'Nachricht senden';
+                submitIcon.style.display = 'block';
             }
         }
 
@@ -389,7 +386,32 @@
                     throw new Error('Fehler beim Senden. (' + response.status + ')');
                 }
                 
-                window.location.href = 'danke.html';
+                var wantsCalendar = document.getElementById('toggle-calendar').checked;
+                
+                if(wantsCalendar) {
+                    // Hide the form smoothly
+                    document.getElementById('contact-form').style.display = 'none';
+                    
+                    // Show the calendar step
+                    var calWrapper = document.getElementById('success-calendar-wrapper');
+                    calWrapper.style.display = 'block';
+                    
+                    // Pass data directly to iframe URL so the user doesn't type it twice
+                    var cName = encodeURIComponent(jsonData.name);
+                    var cEmail = encodeURIComponent(jsonData.email);
+                    var iframeSrc = 'https://cal.com/ryqen/30min?embed=true&layout=month_view&theme=dark&name=' + cName + '&email=' + cEmail;
+                    
+                    document.getElementById('cal-iframe-success').src = iframeSrc;
+                    
+                    // Scroll to it
+                    window.scrollTo({
+                        top: calWrapper.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    window.location.href = 'danke.html';
+                }
+                
             } catch (err) {
                 console.error('API Error:', err);
                 btn.innerHTML = 'Fehler aufgetreten. Bitte erneut versuchen.';
