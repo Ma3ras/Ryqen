@@ -26,9 +26,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
     reveals.forEach(el => io.observe(el));
 
-    // Navbar scroll
+    // Navbar scroll (Optimized with requestAnimationFrame to prevent Layout Thrashing)
     const nav = document.getElementById('navbar');
-    if (nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+    let scrollTicking = false;
+    if (nav) {
+        window.addEventListener('scroll', () => {
+            if (!scrollTicking) {
+                window.requestAnimationFrame(() => {
+                    nav.classList.toggle('scrolled', window.scrollY > 40);
+                    scrollTicking = false;
+                });
+                scrollTicking = true;
+            }
+        }, { passive: true });
+    }
 
     // Mobile menu
     const burger = document.getElementById('burger');
